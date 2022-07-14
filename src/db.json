@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Thiago",
+      "lastName": "Kachinsky",
+      "phone": "47991751455",
+      "genre": "Masculino",
+      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "email": "tjk091@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "address": {
+        "country": "Brasil",
+        "state": "Santa Catarina",
+        "city": "Rio Negrinho"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Thiago",
+      "lastName": "Kachinsky",
+      "phone": "47991751455",
+      "genre": "Masculino",
+      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "email": "tjk091@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "address": {
+        "country": "Brasil",
+        "state": "Santa Catarina",
+        "city": "Rio Negrinho"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Thiago",
+      "lastName": "Kachinsky",
+      "phone": "47991751455",
+      "genre": "Masculino",
+      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "email": "tjk091@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "address": {
+        "country": "Brasil",
+        "state": "Santa Catarina",
+        "city": "Rio Negrinho"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Thiago",
+      "lastName": "Kachinsky",
+      "phone": "47991751455",
+      "genre": "Masculino",
+      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "email": "tjk091@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "address": {
+        "country": "Brasil",
+        "state": "Santa Catarina",
+        "city": "Rio Negrinho"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Thiago",
+      "lastName": "Kachinsky",
+      "phone": "47991751455",
+      "genre": "Masculino",
+      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "email": "tjk091@gmail.com",
+      "password": "123",
+      "passwordConfirmation": "123",
+      "address": {
+        "country": "Brasil",
+        "state": "Santa Catarina",
+        "city": "Rio Negrinho"
+      }
+    }
+  ]
+}
