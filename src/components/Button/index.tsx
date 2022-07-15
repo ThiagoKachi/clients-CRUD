@@ -5,7 +5,7 @@ type ButtonActionProps = {
   title?: string;
   icon: ReactElement;
   type: 'button' | 'submit' | 'reset' | undefined;
-  onClick?: () => void;
+  onclick?: () => void;
   color?: string;
 };
 
@@ -13,7 +13,7 @@ export function ButtonAction({
   title,
   icon,
   type,
-  onClick,
+  onclick,
   color,
 }: ButtonActionProps) {
   const isWideVersion = useBreakpointValue({
@@ -27,7 +27,7 @@ export function ButtonAction({
       colorScheme={color ? color : 'twitter'}
       color="white"
       type={type}
-      onClick={onClick}
+      onClick={onclick}
       w={['24', '28', '32']}
       ml="2"
     >
@@ -38,7 +38,7 @@ export function ButtonAction({
       colorScheme={color ? color : 'twitter'}
       color="white"
       type={type}
-      onClick={onClick}
+      onClick={onclick}
       w={['28', '32']}
       ml="2"
     >

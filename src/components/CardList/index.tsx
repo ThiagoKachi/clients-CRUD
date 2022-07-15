@@ -1,30 +1,57 @@
-/* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { SimpleGrid } from '@chakra-ui/react';
 import { UsersProps } from '../../models/users';
 import { Card } from '../Card';
+import { ErrorMessage } from '../ErrorMessage';
+import { SkeletonLoading } from '../SkeletonLoading';
+import { SpinnerLoading } from '../SpinnerLoading';
+import { NotResultsFound } from '../NotResultsFound';
 
-export function CardList() {
-  const [users, setUsers] = useState<UsersProps[]>([])
+type CardListProps = {
+  isLoading: boolean;
+  error: unknown;
+  results: UsersProps[] | undefined;
+  loadingSearchFilter: boolean;
+  requestUsersError: boolean;
+};
 
-  useEffect(() => {
-    fetch('http://localhost:4000/users').then((e) => e.json()).then((el) => setUsers(el))
-  }, [])
-  
+export function CardList({
+  results,
+  isLoading,
+  error,
+  loadingSearchFilter,
+  requestUsersError,
+}: CardListProps) {
+  if (isLoading) {
+    return <SkeletonLoading />;
+  }
+
+  if (error || requestUsersError) {
+    return <ErrorMessage />;
+  }
+
+  if (loadingSearchFilter) {
+    return <SpinnerLoading />;
+  }
+
   return (
-    <SimpleGrid spacing={20} mt="14" pb="14" minChildWidth='240px'>
-      {users.map((user) => (
-         <Card
-          key={user.id}
-          image={user.picture}
-          name={user.name}
-          lastName={user.lastName}
-          email={user.email}
-          phone={user.phone}
-          country={user.address.country}
-          city={user.address.city}
-       />
-      ))}
+    <SimpleGrid spacing={20} mt="14" pb="14" minChildWidth="300px">
+      {results?.length ? (
+        results?.map((user) => (
+          <Card
+            key={user.id}
+            image={user.picture}
+            name={user.name}
+            lastName={user.lastName}
+            email={user.email}
+            phone={user.phone}
+            country={user.address.country}
+            city={user.address.city}
+          />
+        ))
+      ) : (
+        <NotResultsFound />
+      )}
     </SimpleGrid>
-  )
+  );
 }

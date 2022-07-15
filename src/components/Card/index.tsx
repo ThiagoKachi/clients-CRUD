@@ -24,8 +24,8 @@ export function Card({
 }: CardProps) {
   return (
     <Box
-      maxW={'350px'}
-      w={'full'}
+      maxW={'450px'}
+      w={'320px'}
       bg={'gray.700'}
       boxShadow={'2xl'}
       rounded={'lg'}
@@ -80,7 +80,7 @@ export function Card({
         </Text>
       </Stack>
 
-      <Stack mt={8} direction={'row'} spacing={4}>
+      <Stack mt={8} direction={'row'} spacing={4} ml="-2">
         <ButtonAction
           icon={<AiOutlineEdit />}
           type="button"

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.4",
     "@chakra-ui/react": "^2.2.1",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -29,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "json-server -p 4000 --watch db.json --delay 3000",
+    "server": "json-server -p 4000 --watch db.json --delay 2000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

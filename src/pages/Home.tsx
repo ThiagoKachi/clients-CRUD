@@ -17,7 +17,7 @@ export function Home() {
     >
       <Header />
       <SearchBar />
-      <CardList />
+      {/* <CardList /> */}
     </Flex>
   );
 }
