@@ -6,6 +6,7 @@ import { ErrorMessage } from '../ErrorMessage';
 import { SkeletonLoading } from '../SkeletonLoading';
 import { SpinnerLoading } from '../SpinnerLoading';
 import { NotResultsFound } from '../NotResultsFound';
+import { ModalForm } from '../ModalForm';
 
 type CardListProps = {
   isLoading: boolean;
@@ -13,6 +14,8 @@ type CardListProps = {
   results: UsersProps[] | undefined;
   loadingSearchFilter: boolean;
   requestUsersError: boolean;
+  isOpen: boolean;
+  onClose: () => void;
 };
 
 export function CardList({
@@ -21,6 +24,8 @@ export function CardList({
   error,
   loadingSearchFilter,
   requestUsersError,
+  isOpen,
+  onClose,
 }: CardListProps) {
   if (isLoading) {
     return <SkeletonLoading />;
@@ -45,13 +50,14 @@ export function CardList({
             lastName={user.lastName}
             email={user.email}
             phone={user.phone}
-            country={user.address.country}
             city={user.address.city}
+            state={user.address.state}
           />
         ))
       ) : (
         <NotResultsFound />
       )}
+      <ModalForm isOpen={isOpen} onClose={onClose} />
     </SimpleGrid>
   );
 }

@@ -9,7 +9,7 @@ type CardProps = {
   lastName: string;
   email: string;
   phone: string;
-  country: string;
+  state: string;
   city: string;
 };
 
@@ -19,8 +19,8 @@ export function Card({
   lastName,
   email,
   phone,
-  country,
   city,
+  state,
 }: CardProps) {
   return (
     <Box
@@ -65,10 +65,10 @@ export function Card({
       </Stack>
       <Stack mt={4} direction={'row'} spacing={2}>
         <Heading fontSize={'xl'} color={'gray.500'}>
-          País:
+          Estado:
         </Heading>
         <Text color={'gray.300'} fontWeight="medium">
-          {country}
+          {state}
         </Text>
       </Stack>
       <Stack mt={4} direction={'row'} spacing={2}>

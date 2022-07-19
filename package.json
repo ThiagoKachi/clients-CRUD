@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server": "json-server -p 4000 --watch db.json --delay 2000",
+    "server": "json-server -p 4000 --watch db.json --delay 1000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,4 +1,4 @@
-import { extendTheme, Theme } from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 
 export const theme = extendTheme({
   styles: {
@@ -7,6 +7,16 @@ export const theme = extendTheme({
         bg: 'gray.800',
         color: 'gray.50',
       },
+    },
+  },
+  components: {
+    Modal: {
+      baseStyle: () => ({
+        dialog: {
+          bg: 'gray.700',
+          marginTop: '1rem',
+        },
+      }),
     },
   },
 });
