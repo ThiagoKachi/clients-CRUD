@@ -20,13 +20,13 @@ interface SearchContextData {
   onOpen: () => void;
   onClose: () => void;
   search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  setSearch: (newState: string) => void;
   users: UsersProps[] | undefined;
-  setUsers: React.Dispatch<React.SetStateAction<UsersProps[] | undefined>>;
+  setUsers: (newState: UsersProps[] | undefined) => void;
   loadingSearch: boolean;
-  setLoadingSearch: React.Dispatch<React.SetStateAction<boolean>>;
+  setLoadingSearch: (newState: boolean) => void;
   requestUsersError: boolean;
-  setRequestUsersError: React.Dispatch<React.SetStateAction<boolean>>;
+  setRequestUsersError: (newState: boolean) => void;
   data: UsersProps[] | undefined;
   isLoading: boolean;
   error: unknown;

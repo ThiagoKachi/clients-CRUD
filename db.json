@@ -10,14 +10,13 @@
       "password": "123",
       "passwordConfirmation": "123",
       "address": {
-        "country": "Brasil",
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
       }
     },
     {
       "id": 2,
-      "name": "Thiago Kachinsky",
+      "name": "Luciano Kachinsky",
       "phone": "47991751455",
       "genre": "Masculino",
       "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
@@ -25,14 +24,13 @@
       "password": "123",
       "passwordConfirmation": "123",
       "address": {
-        "country": "Brasil",
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
       }
     },
     {
       "id": 3,
-      "name": "Thiago Kachinsky",
+      "name": "Maria Kachinsky",
       "phone": "47991751455",
       "genre": "Masculino",
       "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
@@ -40,14 +38,13 @@
       "password": "123",
       "passwordConfirmation": "123",
       "address": {
-        "country": "Brasil",
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
       }
     },
     {
       "id": 4,
-      "name": "Thiago Kachinsky",
+      "name": "Fernanda Kachinsky",
       "phone": "47991751455",
       "genre": "Masculino",
       "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
@@ -55,14 +52,13 @@
       "password": "123",
       "passwordConfirmation": "123",
       "address": {
-        "country": "Brasil",
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
       }
     },
     {
       "id": 5,
-      "name": "Thiago Kachinsky",
+      "name": "Fulano Kachinsky",
       "phone": "47991751455",
       "genre": "Masculino",
       "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
@@ -70,7 +66,6 @@
       "password": "123",
       "passwordConfirmation": "123",
       "address": {
-        "country": "Brasil",
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
       }

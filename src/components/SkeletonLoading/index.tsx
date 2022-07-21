@@ -12,7 +12,7 @@ export function SkeletonLoading() {
   return (
     <SimpleGrid spacing={20} mt="14" pb="14" minChildWidth="240px">
       {skeletonLength.map((e, i) => (
-        <>
+        <div key={i}>
           <Box
             key={i}
             padding="8"
@@ -25,7 +25,7 @@ export function SkeletonLoading() {
             <SkeletonCircle size="16" mb="20" m="auto" />
             <SkeletonText mt="14" noOfLines={4} spacing="6" />
           </Box>
-        </>
+        </div>
       ))}
     </SimpleGrid>
   );

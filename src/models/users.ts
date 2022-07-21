@@ -1,5 +1,4 @@
 type UserAddress = {
-  country: string;
   state: string;
   city: string;
 };
@@ -15,4 +14,16 @@ export interface UsersProps {
   password: string;
   passwordConfirmation: string;
   address: UserAddress;
+}
+
+export interface CreateUserFormData {
+  id?: number;
+  name?: string;
+  phone?: string;
+  genre?: string;
+  picture?: string;
+  email?: string;
+  password?: string;
+  passwordConfirmation?: string;
+  address?: UserAddress;
 }
