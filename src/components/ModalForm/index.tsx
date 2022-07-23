@@ -16,7 +16,9 @@ import {
   ModalOverlay,
   Radio,
   RadioGroup,
+  Spinner,
   Stack,
+  useToast,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { CreateUserFormData } from '../../models/users';
@@ -27,6 +29,8 @@ import {
   phoneNumber,
 } from '../../utils/formatters/phone';
 import { InputError } from '../InputError';
+import { useUsersPost } from '../../services/hooks/useUsers';
+import { queryClient } from '../../services/queryClient';
 
 type ModalFormProps = {
   isOpen: boolean;
@@ -52,11 +56,16 @@ const validationSchema = yup.object({
     .string()
     .required('Confirmação de senha é obrigatória')
     .oneOf([null, yup.ref('password')], 'As senhas precisam ser iguais.'),
-  state: yup.string().required('Estado obrigatório'),
-  city: yup.string().required('Cidade obrigatório'),
+  address: yup.object().shape({
+    state: yup.string().required('Estado obrigatório'),
+    city: yup.string().required('Cidade obrigatório'),
+  }),
 });
 
 export function ModalForm({ isOpen, onClose }: ModalFormProps) {
+  const toast = useToast();
+
+  const { isLoading, mutate } = useUsersPost();
   const [show, setShow] = useState(false);
   const [gender, setGender] = useState('male');
   const handleClick = () => setShow(!show);
@@ -64,9 +73,24 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
-  const { handleSubmit, register, formState, watch, setValue } = useForm({
-    resolver: yupResolver(validationSchema),
-  });
+  const { handleSubmit, register, formState, watch, setValue, reset } = useForm(
+    {
+      resolver: yupResolver(validationSchema),
+      defaultValues: {
+        name: '',
+        phone: '',
+        gender: 'male',
+        avatar: '',
+        email: '',
+        password: '',
+        passwordConfirmation: '',
+        address: {
+          state: '',
+          city: '',
+        },
+      },
+    }
+  );
 
   const { errors } = formState;
   // Aplicar máscara de telefone com RHF
@@ -76,8 +100,34 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
     setValue('phone', normalizePhoneNumber(phoneValue));
   }, [phoneValue]);
 
-  function onSubmit(data: CreateUserFormData) {
-    console.log('deu', data);
+  async function onSubmit(data: CreateUserFormData) {
+    await mutate(data, {
+      onSuccess: () => {
+        onClose();
+        toast({
+          position: 'top-right',
+          title: 'Usuário criado com sucesso!',
+          description: '',
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+        });
+        reset();
+      },
+      onError(error) {
+        toast({
+          position: 'top-right',
+          title: 'Erro ao cadastrar usuário!',
+          description: `${error}`,
+          status: 'error',
+          duration: 2000,
+          isClosable: true,
+        });
+      },
+      onSettled() {
+        queryClient.invalidateQueries(['users']);
+      },
+    });
   }
 
   return (
@@ -192,26 +242,37 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
 
               <FormControl mt={4}>
                 <FormLabel>Estado *</FormLabel>
-                <Input placeholder="Estado" {...register('state')} />
-                {errors?.state?.type && (
-                  <InputError message={errors.state.message} />
+                <Input placeholder="Estado" {...register('address.state')} />
+                {errors?.address?.state?.type && (
+                  <InputError message={errors.address.state.message} />
                 )}
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel>Cidade *</FormLabel>
-                <Input placeholder="Cidade" {...register('city')} />
-                {errors?.city?.type && (
-                  <InputError message={errors.city.message} />
+                <Input placeholder="Cidade" {...register('address.city')} />
+                {errors?.address?.city?.type && (
+                  <InputError message={errors.address.city.message} />
                 )}
               </FormControl>
             </ModalBody>
 
             <ModalFooter>
-              <Button colorScheme="twitter" mr={3} type="submit">
-                Criar usuário
+              <Button
+                colorScheme="twitter"
+                mr={3}
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? <Spinner /> : 'Criar usuário'}
               </Button>
-              <Button bg="red.400" onClick={onClose}>
+              <Button
+                bg="red.400"
+                onClick={() => {
+                  onClose();
+                  reset();
+                }}
+              >
                 Cancelar
               </Button>
             </ModalFooter>

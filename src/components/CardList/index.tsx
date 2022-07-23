@@ -7,6 +7,7 @@ import { SkeletonLoading } from '../SkeletonLoading';
 import { SpinnerLoading } from '../SpinnerLoading';
 import { NotResultsFound } from '../NotResultsFound';
 import { ModalForm } from '../ModalForm';
+import { ConfirmationModal } from '../ConfirmationModal';
 
 type CardListProps = {
   isLoading: boolean;
@@ -45,6 +46,7 @@ export function CardList({
         results?.map((user) => (
           <Card
             key={user.id}
+            id={user.id}
             image={user.picture}
             name={user.name}
             lastName={user.lastName}
@@ -58,6 +60,7 @@ export function CardList({
         <NotResultsFound />
       )}
       <ModalForm isOpen={isOpen} onClose={onClose} />
+      <ConfirmationModal />
     </SimpleGrid>
   );
 }

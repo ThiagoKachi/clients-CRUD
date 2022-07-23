@@ -10,3 +10,12 @@ export const normalizePhoneNumber = (value: string | undefined) => {
   .replace(/(\d{5})(\d)/, '$1-$2')
   .replace(/(-\d{4})(\d+?)/, '$1')
 }
+
+export function removePhoneMask(value: string) {
+  if (!value) return undefined;
+  return value
+  .split('(').join('')
+  .split(')').join('')
+  .split('-').join('')
+  .split(' ').join('');
+}

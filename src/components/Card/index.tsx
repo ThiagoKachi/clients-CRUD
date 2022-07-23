@@ -2,8 +2,11 @@ import React from 'react';
 import { Heading, Avatar, Box, Text, Stack } from '@chakra-ui/react';
 import { ButtonAction } from '../Button';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { normalizePhoneNumber } from '../../utils/formatters/phone';
+import { useDeleteUser } from '../../context/DeleteUserContext';
 
 type CardProps = {
+  id: number;
   image: string;
   name: string;
   lastName: string;
@@ -14,6 +17,7 @@ type CardProps = {
 };
 
 export function Card({
+  id,
   image,
   name,
   lastName,
@@ -22,6 +26,13 @@ export function Card({
   city,
   state,
 }: CardProps) {
+  const { setUserId, onOpen } = useDeleteUser();
+
+  function handleDelete() {
+    setUserId(id);
+    onOpen();
+  }
+
   return (
     <Box
       maxW={'450px'}
@@ -60,7 +71,7 @@ export function Card({
           Telefone:
         </Heading>
         <Text color={'gray.300'} fontWeight="medium">
-          {phone}
+          {normalizePhoneNumber(phone)}
         </Text>
       </Stack>
       <Stack mt={4} direction={'row'} spacing={2}>
@@ -92,6 +103,7 @@ export function Card({
           type="button"
           title="Excluir"
           color="red"
+          onclick={handleDelete}
         />
       </Stack>
     </Box>
