@@ -8,8 +8,8 @@ export interface UsersProps {
   name: string;
   lastName: string;
   phone: string;
-  genre: string;
-  picture: string;
+  gender: string;
+  avatar: string;
   email: string;
   password: string;
   passwordConfirmation: string;
@@ -20,8 +20,8 @@ export interface CreateUserFormData {
   id?: number;
   name?: string;
   phone?: string;
-  genre?: string;
-  picture?: string;
+  gender?: string;
+  avatar?: string;
   email?: string;
   password?: string;
   passwordConfirmation?: string;

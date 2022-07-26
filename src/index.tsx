@@ -8,6 +8,7 @@ import { QueryClientProvider } from 'react-query';
 import { queryClient } from './services/queryClient';
 import { SearchProvider } from './context/SearchContext';
 import { DeleteUserProvider } from './context/DeleteUserContext';
+import { PostPutUserProvider } from './context/PostPutContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,12 +19,14 @@ root.render(
       <ChakraProvider theme={theme}>
         <SearchProvider>
           <DeleteUserProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<App />} />
-                {/* <Route path="*" element={<NotFound />} /> */}
-              </Routes>
-            </BrowserRouter>
+            <PostPutUserProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<App />} />
+                  {/* <Route path="*" element={<NotFound />} /> */}
+                </Routes>
+              </BrowserRouter>
+            </PostPutUserProvider>
           </DeleteUserProvider>
         </SearchProvider>
       </ChakraProvider>

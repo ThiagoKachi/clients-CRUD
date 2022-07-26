@@ -3,9 +3,16 @@ import { Flex, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { ButtonAction } from '../Button';
 import { useSearch } from '../../context/SearchContext';
 import { AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
+import { usePostPutUser } from '../../context/PostPutContext';
 
 export function SearchBar() {
   const { handleSearch, search, setSearch, onOpen } = useSearch();
+  const { setIsEdit } = usePostPutUser();
+
+  function handleCreateUser() {
+    onOpen();
+    setIsEdit(false);
+  }
 
   return (
     <Flex direction="column">
@@ -38,7 +45,7 @@ export function SearchBar() {
           title="Novo"
           icon={<AiOutlinePlus />}
           type="button"
-          onclick={onOpen}
+          onclick={handleCreateUser}
         />
       </Flex>
     </Flex>

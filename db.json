@@ -2,27 +2,27 @@
   "users": [
     {
       "id": 1,
-      "name": "Thiago Kachinsky",
-      "phone": "47991751455",
-      "genre": "Masculino",
-      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
-      "email": "tjk091@gmail.com",
-      "password": "123",
-      "passwordConfirmation": "123",
+      "name": "Thiago Kachinsky6",
+      "phone": "(47) 99175-1455",
+      "gender": "male",
+      "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "email": "tjk091@gmail.com.br",
+      "password": "123456",
+      "passwordConfirmation": "123456",
       "address": {
         "state": "Santa Catarina",
-        "city": "Rio Negrinho"
+        "city": "Joinville"
       }
     },
     {
       "id": 2,
-      "name": "Luciano Kachinsky",
-      "phone": "47991751455",
-      "genre": "Masculino",
-      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "name": "Luciano Kachinsky 56",
+      "phone": "(47) 99175-1455",
+      "gender": "male",
+      "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
       "email": "tjk091@gmail.com",
-      "password": "123",
-      "passwordConfirmation": "123",
+      "password": "123456",
+      "passwordConfirmation": "123456",
       "address": {
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
@@ -30,13 +30,13 @@
     },
     {
       "id": 3,
-      "name": "Maria Kachinsky",
-      "phone": "47991751455",
-      "genre": "Masculino",
-      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "name": "Maria Kachinsky 5",
+      "phone": "(47) 99175-1455",
+      "gender": "male",
+      "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
       "email": "tjk091@gmail.com",
-      "password": "123",
-      "passwordConfirmation": "123",
+      "password": "123456",
+      "passwordConfirmation": "123456",
       "address": {
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
@@ -46,8 +46,8 @@
       "id": 4,
       "name": "Fernanda Kachinsky",
       "phone": "47991751455",
-      "genre": "Masculino",
-      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "gender": "Masculino",
+      "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
       "email": "tjk091@gmail.com",
       "password": "123",
       "passwordConfirmation": "123",
@@ -60,8 +60,8 @@
       "id": 5,
       "name": "Fulano Kachinsky",
       "phone": "47991751455",
-      "genre": "Masculino",
-      "picture": "https://avatars.githubusercontent.com/u/61670495?v=4",
+      "gender": "Masculino",
+      "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
       "email": "tjk091@gmail.com",
       "password": "123",
       "passwordConfirmation": "123",
@@ -69,271 +69,6 @@
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
       }
-    },
-    {
-      "id": 6,
-      "name": "cdscds",
-      "phone": "(99) 99999-9999",
-      "gender": "male",
-      "avatar": "423",
-      "email": "tjk@gmail.com",
-      "password": "123456",
-      "passwordConfirmation": "123456",
-      "address": {
-        "state": "Santa Catarina",
-        "city": "Rio Negrinho"
-      }
-    },
-    {
-      "name": "453",
-      "phone": "(99) 99999-9999",
-      "gender": "male",
-      "avatar": "fdsfds",
-      "email": "cdscds@cvs.com",
-      "password": "123456",
-      "passwordConfirmation": "123456",
-      "state": "cadscds",
-      "city": "cdsdcds",
-      "address": {
-        "state": "state",
-        "city": "city"
-      },
-      "id": 7
-    },
-    {
-      "avatar": "Sint ducimus deser",
-      "address": {
-        "city": "Ad optio nesciunt ",
-        "state": "Cumque minus pariatu"
-      },
-      "email": "ryhuk@mailinator.com",
-      "gender": "male",
-      "name": "Regan Chambers",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "phone": "(16) 93213-1231",
-      "id": 8
-    },
-    {
-      "avatar": "At dolor labore et u",
-      "address": {
-        "city": "Maiores sapiente mol",
-        "state": "Voluptas enim a mole"
-      },
-      "email": "zosobarop@mailinator.com",
-      "gender": "female",
-      "name": "Hasad Pearson",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "phone": "99999312312",
-      "id": 9
-    },
-    {
-      "avatar": "At dolor labore et u",
-      "address": {
-        "city": "Maiores sapiente mol",
-        "state": "Voluptas enim a mole"
-      },
-      "email": "zosobarop@mailinator.com",
-      "gender": "female",
-      "name": "Hasad Pearson",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "phone": "99999312312",
-      "id": 10
-    },
-    {
-      "name": "Cheryl Simpson",
-      "phone": "(19) 94719-8394",
-      "gender": "male",
-      "avatar": "Nam laborum Non dol",
-      "email": "rymyqu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "state",
-        "city": "city"
-      },
-      "id": 11
-    },
-    {
-      "name": "Nehru Joyce",
-      "phone": "(99) 99932-1789",
-      "gender": "male",
-      "avatar": "Vel dolorum distinct",
-      "email": "ritasecika@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {},
-      "id": 12
-    },
-    {
-      "name": "Signe Workman",
-      "phone": "(99) 99321-3123",
-      "gender": "female",
-      "avatar": "Magna consequat Aut",
-      "email": "xyroz@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "423423",
-        "city": "432432423"
-      },
-      "id": 13
-    },
-    {
-      "name": "Lisandra Floyd",
-      "phone": "(99) 93213-1231",
-      "gender": "female",
-      "avatar": "Nobis eum omnis itaq",
-      "email": "gomyxas@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Deleniti in aut veli",
-        "city": "Vitae repellendus E"
-      },
-      "id": 14
-    },
-    {
-      "name": "Lisandra Floyd",
-      "phone": "(99) 93213-1231",
-      "gender": "female",
-      "avatar": "Nobis eum omnis itaq",
-      "email": "gomyxas@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Deleniti in aut veli",
-        "city": "Vitae repellendus E"
-      },
-      "id": 15
-    },
-    {
-      "name": "John Perkins",
-      "phone": "(99) 93213-1312",
-      "gender": "female",
-      "avatar": "Ex vero nisi esse u",
-      "email": "xoqo@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Cillum porro sunt d",
-        "city": "Ipsa accusamus ipsu"
-      },
-      "id": 16
-    },
-    {
-      "name": "Reece Sears",
-      "phone": "(17) 95653-8053",
-      "gender": "male",
-      "avatar": "Nulla nihil maxime a",
-      "email": "ruzowirylu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Dolore et ut nemo co",
-        "city": "Dignissimos et dolor"
-      },
-      "id": 17
-    },
-    {
-      "name": "Reece Sears",
-      "phone": "(17) 95653-8053",
-      "gender": "male",
-      "avatar": "Nulla nihil maxime a",
-      "email": "ruzowirylu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Dolore et ut nemo co",
-        "city": "Dignissimos et dolor"
-      },
-      "id": 18
-    },
-    {
-      "name": "Reece Sears",
-      "phone": "(17) 95653-8053",
-      "gender": "male",
-      "avatar": "Nulla nihil maxime a",
-      "email": "ruzowirylu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Dolore et ut nemo co",
-        "city": "Dignissimos et dolor"
-      },
-      "id": 19
-    },
-    {
-      "name": "Reece Sears",
-      "phone": "(17) 95653-8053",
-      "gender": "male",
-      "avatar": "Nulla nihil maxime a",
-      "email": "ruzowirylu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Dolore et ut nemo co",
-        "city": "Dignissimos et dolor"
-      },
-      "id": 20
-    },
-    {
-      "name": "Reece Sears",
-      "phone": "(17) 95653-8053",
-      "gender": "male",
-      "avatar": "Nulla nihil maxime a",
-      "email": "ruzowirylu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Dolore et ut nemo co",
-        "city": "Dignissimos et dolor"
-      },
-      "id": 21
-    },
-    {
-      "name": "Reece Sears",
-      "phone": "(17) 95653-8053",
-      "gender": "male",
-      "avatar": "Nulla nihil maxime a",
-      "email": "ruzowirylu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Dolore et ut nemo co",
-        "city": "Dignissimos et dolor"
-      },
-      "id": 22
-    },
-    {
-      "name": "Melodie Delacruz",
-      "phone": "(99) 93213-1231",
-      "gender": "male",
-      "avatar": "Eum vero nihil lorem",
-      "email": "myxax@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "In laudantium et mo",
-        "city": "Quaerat eum consequa"
-      },
-      "id": 23
-    },
-    {
-      "name": "Quinlan Carver",
-      "phone": "(99) 94234-2343",
-      "gender": "female",
-      "avatar": "Non ut numquam asper",
-      "email": "fyvasu@mailinator.com",
-      "password": "Pa$$w0rd!",
-      "passwordConfirmation": "Pa$$w0rd!",
-      "address": {
-        "state": "Ratione sint quod m",
-        "city": "Mollitia doloribus c"
-      },
-      "id": 24
     }
   ]
 }

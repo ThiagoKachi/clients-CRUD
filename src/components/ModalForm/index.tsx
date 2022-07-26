@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Button,
   Flex,
@@ -18,7 +18,6 @@ import {
   RadioGroup,
   Spinner,
   Stack,
-  useToast,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { CreateUserFormData } from '../../models/users';
@@ -29,8 +28,9 @@ import {
   phoneNumber,
 } from '../../utils/formatters/phone';
 import { InputError } from '../InputError';
-import { useUsersPost } from '../../services/hooks/useUsers';
-import { queryClient } from '../../services/queryClient';
+import { usePostPutUser } from '../../context/PostPutContext';
+import { getUsersById } from '../../services/hooks/useUsers';
+import { SpinnerLoading } from '../SpinnerLoading';
 
 type ModalFormProps = {
   isOpen: boolean;
@@ -63,34 +63,54 @@ const validationSchema = yup.object({
 });
 
 export function ModalForm({ isOpen, onClose }: ModalFormProps) {
-  const toast = useToast();
-
-  const { isLoading, mutate } = useUsersPost();
+  const [userFormDefaultValues, setUserFormDefaultValues] = useState<any>();
   const [show, setShow] = useState(false);
+  const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const [gender, setGender] = useState('male');
   const handleClick = () => setShow(!show);
 
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
+  // Fazer verificação para não deixar cadastrar usuários com o mesmo número de celular
+  // Aplicar mutation na rota de getUsersById
+  // Fazer tratativa de erro em todas as chamadas API
+
+  const { handlePostOrPutUser, isLoading, isLoadingPut, isEdit, userIdToEdit } =
+    usePostPutUser();
 
   const { handleSubmit, register, formState, watch, setValue, reset } = useForm(
     {
       resolver: yupResolver(validationSchema),
-      defaultValues: {
-        name: '',
-        phone: '',
-        gender: 'male',
-        avatar: '',
-        email: '',
-        password: '',
-        passwordConfirmation: '',
-        address: {
-          state: '',
-          city: '',
-        },
-      },
+      defaultValues: userFormDefaultValues,
     }
   );
+
+  useEffect(() => {
+    async function getUserById() {
+      setIsLoadingDetails(true);
+      if (userIdToEdit !== undefined) {
+        await getUsersById(userIdToEdit)
+          .then((e) => {
+            reset(e);
+            setUserFormDefaultValues(e);
+          })
+          .then((e) => console.log(e, 'ere'))
+          .catch((err) => console.log(err))
+          .finally(() => {
+            setIsLoadingDetails(false);
+          });
+      }
+    }
+    function setDefaultValesNull() {
+      const defaultValues: CreateUserFormData = {};
+
+      setUserFormDefaultValues(defaultValues);
+      reset(defaultValues);
+    }
+    if (isEdit) {
+      getUserById();
+    } else {
+      setDefaultValesNull();
+    }
+  }, [userIdToEdit, isEdit, reset]);
 
   const { errors } = formState;
   // Aplicar máscara de telefone com RHF
@@ -101,182 +121,168 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
   }, [phoneValue]);
 
   async function onSubmit(data: CreateUserFormData) {
-    await mutate(data, {
-      onSuccess: () => {
-        onClose();
-        toast({
-          position: 'top-right',
-          title: 'Usuário criado com sucesso!',
-          description: '',
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-        });
-        reset();
-      },
-      onError(error) {
-        toast({
-          position: 'top-right',
-          title: 'Erro ao cadastrar usuário!',
-          description: `${error}`,
-          status: 'error',
-          duration: 2000,
-          isClosable: true,
-        });
-      },
-      onSettled() {
-        queryClient.invalidateQueries(['users']);
-      },
-    });
+    handlePostOrPutUser(data);
   }
 
   return (
     <>
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-        size="lg"
-      >
+      <Modal isOpen={isOpen} onClose={onClose} size="lg">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Criar usuário</ModalHeader>
+          <ModalHeader>
+            {isEdit ? 'Editar usuário' : 'Criar usuário'}
+          </ModalHeader>
           <ModalCloseButton />
-          <Flex as="form" direction="column" onSubmit={handleSubmit(onSubmit)}>
-            <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Nome *</FormLabel>
-                <Input placeholder="Nome completo" {...register('name')} />
-                {errors?.name?.type && (
-                  <InputError message={errors.name.message} />
-                )}
-              </FormControl>
+          {isLoadingDetails ? (
+            <Flex m="auto" py="4">
+              <SpinnerLoading />
+            </Flex>
+          ) : (
+            <Flex
+              as="form"
+              direction="column"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <ModalBody pb={6}>
+                <FormControl>
+                  <FormLabel>Nome *</FormLabel>
+                  <Input placeholder="Nome completo" {...register('name')} />
+                  {errors?.name?.type && (
+                    <InputError message={errors.name.message} />
+                  )}
+                </FormControl>
 
-              <FormControl mt={4}>
-                <FormLabel>Celular *</FormLabel>
-                <Input
-                  type="tel"
-                  placeholder="(99) 99999-9999"
-                  {...register('phone')}
-                  name="phone"
-                />
-                {errors?.phone?.type && (
-                  <InputError message={errors.phone.message} />
-                )}
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Gênero *</FormLabel>
-                <RadioGroup onChange={setGender} value={gender}>
-                  <Stack direction="row">
-                    <Radio value="male" {...register('gender')}>
-                      Masculino
-                    </Radio>
-                    <Radio value="female" {...register('gender')}>
-                      Feminino
-                    </Radio>
-                  </Stack>
-                </RadioGroup>
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Foto de perfil (Link) *</FormLabel>
-                <Input placeholder="https://" {...register('avatar')} />
-                {errors?.avatar?.type && (
-                  <InputError message={errors.avatar.message} />
-                )}
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Email *</FormLabel>
-                <Input
-                  placeholder="fulano@email.com"
-                  type="text"
-                  {...register('email')}
-                />
-                {errors?.email?.type && (
-                  <InputError message={errors.email.message} />
-                )}
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Senha *</FormLabel>
-                <InputGroup size="md">
+                <FormControl mt={4}>
+                  <FormLabel>Celular *</FormLabel>
                   <Input
-                    pr="4.5rem"
-                    type={show ? 'text' : 'password'}
-                    placeholder="Senha"
-                    {...register('password')}
+                    type="tel"
+                    placeholder="(99) 99999-9999"
+                    {...register('phone')}
+                    name="phone"
                   />
-                  <InputRightElement width="4.8rem">
-                    <Button
-                      h="1.75rem"
-                      mr="1"
-                      size="sm"
-                      onClick={handleClick}
-                      bg="twitter"
-                      _hover={{ backgroundColor: 'none' }}
-                      _active={{ backgroundColor: 'none' }}
-                    >
-                      {show ? 'Esconder' : 'Mostrar'}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-                {errors?.password?.type && (
-                  <InputError message={errors.password.message} />
-                )}
-              </FormControl>
+                  {errors?.phone?.type && (
+                    <InputError message={errors.phone.message} />
+                  )}
+                </FormControl>
 
-              <FormControl mt={4}>
-                <FormLabel>Confirmação de senha *</FormLabel>
-                <Input
-                  placeholder="Confirme a senha"
-                  type="password"
-                  {...register('passwordConfirmation')}
-                />
-                {errors?.passwordConfirmation?.type && (
-                  <InputError message={errors.passwordConfirmation.message} />
-                )}
-              </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Gênero *</FormLabel>
+                  <RadioGroup onChange={setGender} value={gender}>
+                    <Stack direction="row">
+                      <Radio value="male" {...register('gender')}>
+                        Masculino
+                      </Radio>
+                      <Radio value="female" {...register('gender')}>
+                        Feminino
+                      </Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
 
-              <FormControl mt={4}>
-                <FormLabel>Estado *</FormLabel>
-                <Input placeholder="Estado" {...register('address.state')} />
-                {errors?.address?.state?.type && (
-                  <InputError message={errors.address.state.message} />
-                )}
-              </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Foto de perfil (Link) *</FormLabel>
+                  <Input placeholder="https://" {...register('avatar')} />
+                  {errors?.avatar?.type && (
+                    <InputError message={errors.avatar.message} />
+                  )}
+                </FormControl>
 
-              <FormControl mt={4}>
-                <FormLabel>Cidade *</FormLabel>
-                <Input placeholder="Cidade" {...register('address.city')} />
-                {errors?.address?.city?.type && (
-                  <InputError message={errors.address.city.message} />
-                )}
-              </FormControl>
-            </ModalBody>
+                <FormControl mt={4}>
+                  <FormLabel>Email *</FormLabel>
+                  <Input
+                    placeholder="fulano@email.com"
+                    type="text"
+                    {...register('email')}
+                  />
+                  {errors?.email?.type && (
+                    <InputError message={errors.email.message} />
+                  )}
+                </FormControl>
 
-            <ModalFooter>
-              <Button
-                colorScheme="twitter"
-                mr={3}
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? <Spinner /> : 'Criar usuário'}
-              </Button>
-              <Button
-                bg="red.400"
-                onClick={() => {
-                  onClose();
-                  reset();
-                }}
-              >
-                Cancelar
-              </Button>
-            </ModalFooter>
-          </Flex>
+                <FormControl mt={4}>
+                  <FormLabel>Senha *</FormLabel>
+                  <InputGroup size="md">
+                    <Input
+                      pr="4.5rem"
+                      type={show ? 'text' : 'password'}
+                      placeholder="Senha"
+                      {...register('password')}
+                    />
+                    <InputRightElement width="4.8rem">
+                      <Button
+                        h="1.75rem"
+                        mr="1"
+                        size="sm"
+                        onClick={handleClick}
+                        bg="twitter"
+                        _hover={{ backgroundColor: 'none' }}
+                        _active={{ backgroundColor: 'none' }}
+                      >
+                        {show ? 'Esconder' : 'Mostrar'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+                  {errors?.password?.type && (
+                    <InputError message={errors.password.message} />
+                  )}
+                </FormControl>
+
+                <FormControl mt={4}>
+                  <FormLabel>Confirmação de senha *</FormLabel>
+                  <Input
+                    placeholder="Confirme a senha"
+                    type="password"
+                    {...register('passwordConfirmation')}
+                  />
+                  {errors?.passwordConfirmation?.type && (
+                    <InputError message={errors.passwordConfirmation.message} />
+                  )}
+                </FormControl>
+
+                <FormControl mt={4}>
+                  <FormLabel>Estado *</FormLabel>
+                  <Input placeholder="Estado" {...register('address.state')} />
+                  {errors?.address?.state?.type && (
+                    <InputError message={errors.address.state.message} />
+                  )}
+                </FormControl>
+
+                <FormControl mt={4}>
+                  <FormLabel>Cidade *</FormLabel>
+                  <Input placeholder="Cidade" {...register('address.city')} />
+                  {errors?.address?.city?.type && (
+                    <InputError message={errors.address.city.message} />
+                  )}
+                </FormControl>
+              </ModalBody>
+
+              <ModalFooter>
+                <Button
+                  colorScheme="twitter"
+                  mr={3}
+                  type="submit"
+                  disabled={isLoading || isLoadingPut}
+                >
+                  {isLoading || isLoadingPut ? (
+                    <Spinner />
+                  ) : isEdit ? (
+                    'Editar usuário'
+                  ) : (
+                    'Criar usuário'
+                  )}
+                </Button>
+                <Button
+                  bg="red.400"
+                  onClick={() => {
+                    onClose();
+                    reset();
+                  }}
+                >
+                  Cancelar
+                </Button>
+              </ModalFooter>
+            </Flex>
+          )}
         </ModalContent>
       </Modal>
     </>

@@ -24,10 +24,15 @@ export function ConfirmationModal() {
         <ModalBody>Tem certeza que deseja excluir este usuário?</ModalBody>
 
         <ModalFooter>
-          <Button mr={3} colorScheme="red" onClick={handleDeleteUser}>
+          <Button
+            mr={3}
+            colorScheme="red"
+            onClick={handleDeleteUser}
+            disabled={isLoading}
+          >
             {isLoading ? <Spinner /> : 'Excluir'}
           </Button>
-          <Button onClick={onClose} colorScheme="twitter">
+          <Button onClick={onClose} colorScheme="twitter" disabled={isLoading}>
             Cancelar
           </Button>
         </ModalFooter>

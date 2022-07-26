@@ -4,6 +4,9 @@ import { ButtonAction } from '../Button';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { normalizePhoneNumber } from '../../utils/formatters/phone';
 import { useDeleteUser } from '../../context/DeleteUserContext';
+import { usePostPutUser } from '../../context/PostPutContext';
+import { useSearch } from '../../context/SearchContext';
+import { useForm } from 'react-hook-form';
 
 type CardProps = {
   id: number;
@@ -27,10 +30,18 @@ export function Card({
   state,
 }: CardProps) {
   const { setUserId, onOpen } = useDeleteUser();
+  const { setIsEdit, setUserIdToEdit } = usePostPutUser();
+  const { onOpen: openEditModal } = useSearch();
 
   function handleDelete() {
     setUserId(id);
     onOpen();
+  }
+
+  function handleEditUser() {
+    setIsEdit(true);
+    setUserIdToEdit(id);
+    openEditModal();
   }
 
   return (
@@ -97,6 +108,7 @@ export function Card({
           type="button"
           title="Editar"
           color="green"
+          onclick={handleEditUser}
         />
         <ButtonAction
           icon={<AiOutlineDelete />}

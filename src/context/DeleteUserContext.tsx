@@ -1,8 +1,7 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react';
 import { useDisclosure, useToast } from '@chakra-ui/react';
-import { useMutation } from 'react-query';
-import { api } from '../services/api';
 import { queryClient } from '../services/queryClient';
+import { useUsersDelete } from '../services/hooks/useUsers';
 
 interface SearchProviderProps {
   children: ReactNode;
@@ -16,14 +15,6 @@ interface SearchContextData {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-}
-
-export function useUsersDelete() {
-  const mutationDelete = useMutation((id: number) => {
-    return api.delete(`/users/${id}`);
-  });
-
-  return mutationDelete;
 }
 
 const DeleteUserContext = createContext({} as SearchContextData);

@@ -47,7 +47,7 @@ export function CardList({
           <Card
             key={user.id}
             id={user.id}
-            image={user.picture}
+            image={user.avatar}
             name={user.name}
             lastName={user.lastName}
             email={user.email}

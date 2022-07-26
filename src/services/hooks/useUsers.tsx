@@ -7,6 +7,13 @@ export async function getUsers(): Promise<UsersProps[]> {
 
   return data;
 }
+export async function getUsersById(
+  id: number | undefined
+): Promise<UsersProps[]> {
+  const { data } = await api.get(`/users/${id}`);
+
+  return data;
+}
 
 export function useUsers() {
   return useQuery(['users'], () => getUsers(), {
@@ -20,4 +27,20 @@ export function useUsersPost() {
   });
 
   return mutation;
+}
+
+export function useUsersPut(userId: number | undefined) {
+  const mutation = useMutation((data: CreateUserFormData) => {
+    return api.put(`/users/${userId}`, data);
+  });
+
+  return mutation;
+}
+
+export function useUsersDelete() {
+  const mutationDelete = useMutation((id: number) => {
+    return api.delete(`/users/${id}`);
+  });
+
+  return mutationDelete;
 }
