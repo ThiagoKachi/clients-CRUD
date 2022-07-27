@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Flex,
@@ -63,15 +63,12 @@ const validationSchema = yup.object({
 });
 
 export function ModalForm({ isOpen, onClose }: ModalFormProps) {
-  const [userFormDefaultValues, setUserFormDefaultValues] = useState<any>();
+  const [userFormDefaultValues, setUserFormDefaultValues] =
+    useState<CreateUserFormData>({});
   const [show, setShow] = useState(false);
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const [gender, setGender] = useState('male');
   const handleClick = () => setShow(!show);
-
-  // Fazer verificação para não deixar cadastrar usuários com o mesmo número de celular
-  // Aplicar mutation na rota de getUsersById
-  // Fazer tratativa de erro em todas as chamadas API
 
   const { handlePostOrPutUser, isLoading, isLoadingPut, isEdit, userIdToEdit } =
     usePostPutUser();
@@ -88,11 +85,11 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
       setIsLoadingDetails(true);
       if (userIdToEdit !== undefined) {
         await getUsersById(userIdToEdit)
-          .then((e) => {
+          .then((e: any) => {
             reset(e);
             setUserFormDefaultValues(e);
+            console.log(e, 'edede');
           })
-          .then((e) => console.log(e, 'ere'))
           .catch((err) => console.log(err))
           .finally(() => {
             setIsLoadingDetails(false);

@@ -17,7 +17,7 @@
     {
       "id": 2,
       "name": "Luciano Kachinsky 56",
-      "phone": "(47) 99175-1455",
+      "phone": "(47) 99175-1457",
       "gender": "male",
       "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
       "email": "tjk091@gmail.com",
@@ -59,16 +59,58 @@
     {
       "id": 5,
       "name": "Fulano Kachinsky",
-      "phone": "47991751455",
-      "gender": "Masculino",
+      "phone": "(47) 99175-1452",
+      "gender": "male",
       "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
       "email": "tjk091@gmail.com",
-      "password": "123",
-      "passwordConfirmation": "123",
+      "password": "123456",
+      "passwordConfirmation": "123456",
       "address": {
         "state": "Santa Catarina",
         "city": "Rio Negrinho"
       }
+    },
+    {
+      "phone": "(47) 99175-1459",
+      "name": "Neve Frost",
+      "gender": "male",
+      "avatar": "Elit placeat tempo",
+      "email": "qujonakah@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Praesentium alias nu",
+        "city": "Atque eum quo sit pr"
+      },
+      "id": 6
+    },
+    {
+      "phone": "(47) 99175-1451",
+      "name": "Lael Bolton",
+      "gender": "male",
+      "avatar": "Voluptatem ipsam qu",
+      "email": "lypa@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Aut repudiandae amet",
+        "city": "Pariatur Non quam s"
+      },
+      "id": 7
+    },
+    {
+      "name": "Kylan Fields",
+      "phone": "(47) 99175-1453",
+      "gender": "female",
+      "avatar": "Itaque earum rem vel",
+      "email": "mikojibe@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Molestiae rerum illu",
+        "city": "Deserunt nihil verit"
+      },
+      "id": 8
     }
   ]
 }
