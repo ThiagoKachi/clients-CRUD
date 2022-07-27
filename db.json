@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "name": "Luciano Kachinsky 56",
+      "name": "Luciano Kachinsky",
       "phone": "(47) 99175-1457",
       "gender": "male",
       "avatar": "https://avatars.githubusercontent.com/u/61670495?v=4",
@@ -111,6 +111,146 @@
         "city": "Deserunt nihil verit"
       },
       "id": 8
+    },
+    {
+      "name": "Gay Cooke",
+      "phone": "(99) 94324-2342",
+      "gender": "female",
+      "avatar": "Ea libero magni duci",
+      "email": "qoqifoneh@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Itaque nisi voluptat",
+        "city": "Illum voluptas offi"
+      },
+      "id": 9
+    },
+    {
+      "name": "Hilary Stark",
+      "phone": "(99) 94324-2341",
+      "gender": "female",
+      "avatar": "Laudantium consecte",
+      "email": "qulajuc@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Aspernatur qui eaque",
+        "city": "Hic ducimus ea dolo"
+      },
+      "id": 10
+    },
+    {
+      "name": "Hilary Stark",
+      "phone": "(99) 95315-3513",
+      "gender": "female",
+      "avatar": "Laudantium consecte",
+      "email": "qulajuc@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Aspernatur qui eaque",
+        "city": "Hic ducimus ea dolo"
+      },
+      "id": 11
+    },
+    {
+      "phone": "(99) 94324-2347",
+      "name": "Elliott Moore",
+      "gender": "male",
+      "avatar": "Qui nihil illum eni",
+      "email": "qujuly@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Elit et libero sed ",
+        "city": "Perspiciatis esse h"
+      },
+      "id": 12
+    },
+    {
+      "phone": "(99) 94234-2343",
+      "name": "Jeremy Stewart",
+      "gender": "male",
+      "avatar": "Omnis odio excepteur",
+      "email": "lugigenet@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Quis accusantium est",
+        "city": "Aut obcaecati repell"
+      },
+      "id": 13
+    },
+    {
+      "phone": "(99) 94234-2354",
+      "name": "Wylie Wise",
+      "gender": "male",
+      "avatar": "Numquam Nam illo iru",
+      "email": "camulyxuw@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Qui voluptatem ut u",
+        "city": "Deserunt necessitati"
+      },
+      "id": 14
+    },
+    {
+      "name": "Nash Gilbert",
+      "phone": "(99) 94324-3234",
+      "gender": "male",
+      "avatar": "Omnis a reprehenderi",
+      "email": "huqykac@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Velit ut quae saepe",
+        "city": "Voluptatem harum qu"
+      },
+      "id": 15
+    },
+    {
+      "name": "Shaeleigh Lowery",
+      "phone": "(99) 93712-8372",
+      "gender": "female",
+      "avatar": "Consequat Magnam en",
+      "email": "wagaty@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Dolor neque quaerat ",
+        "city": "Incidunt laborum pr"
+      },
+      "id": 16
+    },
+    {
+      "name": "Judith Gay",
+      "phone": "(18) 97718-1209",
+      "gender": "female",
+      "avatar": "Tempore quod culpa ",
+      "email": "kuwo@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Voluptatibus ullam o",
+        "city": "Incidunt reiciendis"
+      },
+      "id": 17
+    },
+    {
+      "name": "May Snyder",
+      "phone": "(99) 93213-2326",
+      "gender": "male",
+      "avatar": "Inventore et dolorem",
+      "email": "revezilole@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Dolor laudantium co",
+        "city": "Atque Nam praesentiu"
+      },
+      "id": 18
     }
   ]
 }

@@ -4,14 +4,17 @@ import { ButtonAction } from '../Button';
 import { useSearch } from '../../context/SearchContext';
 import { AiOutlinePlus, AiOutlineSearch } from 'react-icons/ai';
 import { usePostPutUser } from '../../context/PostPutContext';
+import { useFormContext } from '../../context/FormContext';
 
 export function SearchBar() {
   const { handleSearch, search, setSearch, onOpen } = useSearch();
   const { setIsEdit } = usePostPutUser();
+  const { reset } = useFormContext();
 
   function handleCreateUser() {
     onOpen();
     setIsEdit(false);
+    reset();
   }
 
   return (

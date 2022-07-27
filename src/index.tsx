@@ -9,6 +9,7 @@ import { queryClient } from './services/queryClient';
 import { SearchProvider } from './context/SearchContext';
 import { DeleteUserProvider } from './context/DeleteUserContext';
 import { PostPutUserProvider } from './context/PostPutContext';
+import { FormProvider } from './context/FormContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,12 +21,14 @@ root.render(
         <SearchProvider>
           <DeleteUserProvider>
             <PostPutUserProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<App />} />
-                  {/* <Route path="*" element={<NotFound />} /> */}
-                </Routes>
-              </BrowserRouter>
+              <FormProvider>
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<App />} />
+                    {/* <Route path="*" element={<NotFound />} /> */}
+                  </Routes>
+                </BrowserRouter>
+              </FormProvider>
             </PostPutUserProvider>
           </DeleteUserProvider>
         </SearchProvider>

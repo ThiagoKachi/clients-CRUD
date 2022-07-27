@@ -19,95 +19,45 @@ import {
   Spinner,
   Stack,
 } from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
 import { CreateUserFormData } from '../../models/users';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  normalizePhoneNumber,
-  phoneNumber,
-} from '../../utils/formatters/phone';
+import { normalizePhoneNumber } from '../../utils/formatters/phone';
 import { InputError } from '../InputError';
 import { usePostPutUser } from '../../context/PostPutContext';
-import { getUsersById } from '../../services/hooks/useUsers';
 import { SpinnerLoading } from '../SpinnerLoading';
+import { useFormContext } from '../../context/FormContext';
 
 type ModalFormProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const validationSchema = yup.object({
-  name: yup.string().required('Nome obrigatório'),
-  phone: yup
-    .string()
-    .matches(phoneNumber, 'Formato do telefone é inválido')
-    .required('Telefone obrigatório'),
-  avatar: yup.string().required('Avatar obrigatório'),
-  email: yup
-    .string()
-    .email('Email precisa ter um formato válido')
-    .required('Email obrigatório'),
-  password: yup
-    .string()
-    .required('Senha obrigatória')
-    .min(6, 'No mínimo 6 caracteres'),
-  passwordConfirmation: yup
-    .string()
-    .required('Confirmação de senha é obrigatória')
-    .oneOf([null, yup.ref('password')], 'As senhas precisam ser iguais.'),
-  address: yup.object().shape({
-    state: yup.string().required('Estado obrigatório'),
-    city: yup.string().required('Cidade obrigatório'),
-  }),
-});
-
 export function ModalForm({ isOpen, onClose }: ModalFormProps) {
-  const [userFormDefaultValues, setUserFormDefaultValues] =
-    useState<CreateUserFormData>({});
   const [show, setShow] = useState(false);
-  const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const [gender, setGender] = useState('male');
   const handleClick = () => setShow(!show);
 
-  const { handlePostOrPutUser, isLoading, isLoadingPut, isEdit, userIdToEdit } =
+  const { handlePostOrPutUser, isLoading, isLoadingPut, isEdit } =
     usePostPutUser();
 
-  const { handleSubmit, register, formState, watch, setValue, reset } = useForm(
-    {
-      resolver: yupResolver(validationSchema),
-      defaultValues: userFormDefaultValues,
-    }
-  );
+  const {
+    handleSubmit,
+    register,
+    formState,
+    watch,
+    setValue,
+    reset,
+    getUserById,
+    setDefaultValesNull,
+    isLoadingDetails,
+  } = useFormContext();
 
   useEffect(() => {
-    async function getUserById() {
-      setIsLoadingDetails(true);
-      if (userIdToEdit !== undefined) {
-        await getUsersById(userIdToEdit)
-          .then((e: any) => {
-            reset(e);
-            setUserFormDefaultValues(e);
-            console.log(e, 'edede');
-          })
-          .catch((err) => console.log(err))
-          .finally(() => {
-            setIsLoadingDetails(false);
-          });
-      }
-    }
-    function setDefaultValesNull() {
-      const defaultValues: CreateUserFormData = {};
-
-      setUserFormDefaultValues(defaultValues);
-      reset(defaultValues);
-    }
     if (isEdit) {
       getUserById();
     } else {
       setDefaultValesNull();
     }
-  }, [userIdToEdit, isEdit, reset]);
+  }, [isEdit]);
 
   const { errors } = formState;
   // Aplicar máscara de telefone com RHF
