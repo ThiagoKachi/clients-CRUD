@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { UsersProps } from '../models/users';
 import { api } from '../services/api';
-import { useUsers } from '../services/hooks/useUsers';
+import { useUsersInfinit } from '../services/hooks/useUsers';
 
 interface SearchProviderProps {
   children: ReactNode;
@@ -27,7 +27,7 @@ interface SearchContextData {
   setLoadingSearch: (newState: boolean) => void;
   requestUsersError: boolean;
   setRequestUsersError: (newState: boolean) => void;
-  data: UsersProps[] | undefined;
+  data: UsersProps[] | undefined | any;
   isLoading: boolean;
   error: unknown;
   handleSearch: (event: FormEvent) => void;
@@ -38,14 +38,14 @@ const SearchContext = createContext({} as SearchContextData);
 export function SearchProvider({ children }: SearchProviderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [search, setSearch] = useState('');
-  const [users, setUsers] = useState<UsersProps[] | undefined>([]);
+  const [users, setUsers] = useState<UsersProps[] | undefined | any>([]);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [requestUsersError, setRequestUsersError] = useState(false);
 
-  const { data, isLoading, error } = useUsers();
+  const { data, isLoading, error } = useUsersInfinit();
 
   useEffect(() => {
-    setUsers(data);
+    setUsers(data?.pages.flat());
   }, [data]);
 
   async function handleSearch(event: FormEvent) {

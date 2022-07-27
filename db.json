@@ -251,6 +251,20 @@
         "city": "Atque Nam praesentiu"
       },
       "id": 18
+    },
+    {
+      "name": "Chanda Griffith",
+      "phone": "(99) 94234-2342",
+      "gender": "male",
+      "avatar": "Dicta temporibus non",
+      "email": "pagu@mailinator.com",
+      "password": "Pa$$w0rd!",
+      "passwordConfirmation": "Pa$$w0rd!",
+      "address": {
+        "state": "Nostrum sed quia ea ",
+        "city": "Voluptas placeat pr"
+      },
+      "id": 19
     }
   ]
 }

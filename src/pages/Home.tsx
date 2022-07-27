@@ -4,6 +4,7 @@ import { Flex } from '@chakra-ui/react';
 import { SearchBar } from '../components/SearchBar';
 import { CardList } from '../components/CardList';
 import { useSearch } from '../context/SearchContext';
+import { Pagination } from '../components/Pagination';
 
 export function Home() {
   const {
@@ -37,6 +38,7 @@ export function Home() {
         isOpen={isOpen}
         onClose={onClose}
       />
+      <Pagination />
     </Flex>
   );
 }

@@ -1,12 +1,19 @@
-import { useMutation, useQuery, UseQueryResult } from 'react-query';
+import { useInfiniteQuery, useMutation } from 'react-query';
 import { UsersProps, CreateUserFormData } from '../../models/users';
 import { api } from '../api';
 
-export async function getUsers(): Promise<UsersProps[]> {
-  const { data } = await api.get('/users');
+type Users = {
+  pageParam?: number;
+};
+
+export async function getUsers({
+  pageParam = 1,
+}: Users): Promise<UsersProps[]> {
+  const { data } = await api.get(`/users?_page=${pageParam}&_limit=9`);
 
   return data;
 }
+
 export async function getUsersById(
   id: number | undefined
 ): Promise<UsersProps[]> {
@@ -15,10 +22,16 @@ export async function getUsersById(
   return data;
 }
 
-export function useUsers() {
-  return useQuery(['users'], () => getUsers(), {
-    staleTime: 1000 * 60 * 10,
-  }) as UseQueryResult<UsersProps[], unknown>;
+export function useUsersInfinit() {
+  return useInfiniteQuery(['users'], getUsers, {
+    getNextPageParam: (_lastPage, pages) => {
+      if (pages.length < 4) {
+        return pages.length + 1;
+      } else {
+        return undefined;
+      }
+    },
+  });
 }
 
 export function useUsersPost() {
