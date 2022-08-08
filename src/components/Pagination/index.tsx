@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { useUsersInfinit } from '../../services/hooks/useUsers';
+import { useSearch } from '../../context/SearchContext';
 
 export function Pagination() {
   const { hasNextPage, fetchNextPage } = useUsersInfinit();
+  const { isLoading } = useSearch();
 
   const handleScroll = () => {
     const bottom =

@@ -1,5 +1,10 @@
 import React, { ReactElement } from 'react';
-import { Button, IconButton, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Button,
+  IconButton,
+  useBreakpointValue,
+  useMediaQuery,
+} from '@chakra-ui/react';
 
 type ButtonActionProps = {
   title?: string;
@@ -16,10 +21,13 @@ export function ButtonAction({
   onclick,
   color,
 }: ButtonActionProps) {
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    sm: true,
-  });
+  // const isWideVersion = useBreakpointValue({
+  //   base: false,
+  //   sm: true,
+  // });
+
+  // const [isWideVersion] = useMediaQuery('(min-width: 1280px)');
+  const isWideVersion = true;
 
   return isWideVersion ? (
     <Button
@@ -30,6 +38,7 @@ export function ButtonAction({
       onClick={onclick}
       w={['24', '28', '32']}
       ml="2"
+      title={title}
     >
       {title}
     </Button>

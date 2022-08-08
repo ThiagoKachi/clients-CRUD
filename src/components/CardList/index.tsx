@@ -8,6 +8,7 @@ import { SpinnerLoading } from '../SpinnerLoading';
 import { NotResultsFound } from '../NotResultsFound';
 import { ModalForm } from '../ModalForm';
 import { ConfirmationModal } from '../ConfirmationModal';
+import { useDeleteUser } from '../../context/DeleteUserContext';
 
 type CardListProps = {
   isLoading: boolean;
@@ -28,6 +29,13 @@ export function CardList({
   isOpen,
   onClose,
 }: CardListProps) {
+  const {
+    isOpen: isOpenConfirmationModal,
+    onClose: onCloseConfirmationModal,
+    isLoading: isLoadingConfirmationModal,
+    handleDeleteUser,
+  } = useDeleteUser();
+
   if (isLoading) {
     return <SkeletonLoading />;
   }
@@ -60,7 +68,12 @@ export function CardList({
         <NotResultsFound />
       )}
       <ModalForm isOpen={isOpen} onClose={onClose} />
-      <ConfirmationModal />
+      <ConfirmationModal
+        isOpen={isOpenConfirmationModal}
+        onClose={onCloseConfirmationModal}
+        isLoading={isLoadingConfirmationModal}
+        handleDeleteUser={handleDeleteUser}
+      />
     </SimpleGrid>
   );
 }

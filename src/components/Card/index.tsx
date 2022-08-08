@@ -6,7 +6,6 @@ import { normalizePhoneNumber } from '../../utils/formatters/phone';
 import { useDeleteUser } from '../../context/DeleteUserContext';
 import { usePostPutUser } from '../../context/PostPutContext';
 import { useSearch } from '../../context/SearchContext';
-import { useForm } from 'react-hook-form';
 
 type CardProps = {
   id: number;
@@ -57,6 +56,7 @@ export function Card({
       <Avatar
         size={'xl'}
         src={image}
+        name={name}
         mb={4}
         pos={'relative'}
         _after={{

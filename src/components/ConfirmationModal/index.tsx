@@ -10,11 +10,20 @@ import {
   ModalOverlay,
   Spinner,
 } from '@chakra-ui/react';
-import { useDeleteUser } from '../../context/DeleteUserContext';
 
-export function ConfirmationModal() {
-  const { isOpen, onClose, isLoading, handleDeleteUser } = useDeleteUser();
+type ConfirmationModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  isLoading: boolean;
+  handleDeleteUser: () => void;
+};
 
+export function ConfirmationModal({
+  isOpen,
+  onClose,
+  isLoading,
+  handleDeleteUser,
+}: ConfirmationModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size="lg">
       <ModalOverlay />
