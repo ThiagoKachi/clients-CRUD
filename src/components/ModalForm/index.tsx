@@ -42,13 +42,13 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
   const {
     handleSubmit,
     register,
-    formState,
-    watch,
+    errors,
     setValue,
     reset,
     getUserById,
     setDefaultValesNull,
     isLoadingDetails,
+    phoneValue,
   } = useFormContext();
 
   useEffect(() => {
@@ -58,10 +58,6 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
       setDefaultValesNull();
     }
   }, [isEdit]);
-
-  const { errors } = formState;
-  // Aplicar máscara de telefone com RHF
-  const phoneValue = watch('phone');
 
   useEffect(() => {
     setValue('phone', normalizePhoneNumber(phoneValue));
@@ -88,7 +84,7 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
             <Flex
               as="form"
               direction="column"
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={() => handleSubmit(onSubmit)}
             >
               <ModalBody pb={6}>
                 <FormControl>
@@ -208,6 +204,7 @@ export function ModalForm({ isOpen, onClose }: ModalFormProps) {
                   colorScheme="twitter"
                   mr={3}
                   type="submit"
+                  name="submitBtn"
                   disabled={isLoading || isLoadingPut}
                 >
                   {isLoading || isLoadingPut ? (

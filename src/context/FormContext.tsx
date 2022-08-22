@@ -73,6 +73,9 @@ export function FormProvider({ children }: FormProviderProps) {
     reset(defaultValues);
   }
 
+  const { errors } = formState;
+  const phoneValue = watch('phone');
+
   const formValues = {
     handleSubmit,
     register,
@@ -84,6 +87,8 @@ export function FormProvider({ children }: FormProviderProps) {
     setDefaultValesNull,
     userFormDefaultValues,
     isLoadingDetails,
+    errors,
+    phoneValue,
   };
 
   return (

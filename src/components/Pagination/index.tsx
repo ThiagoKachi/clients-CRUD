@@ -30,7 +30,7 @@ export function Pagination() {
   return (
     <Flex margin="auto" pb="8">
       <Text color={'blue.300'} fontWeight="bold" fontSize={'lg'}>
-        {hasNextPage ? 'Carregando usuários..' : 'Não existem mais usuários'}
+        {hasNextPage ? 'Carregando usuários..' : ''}
       </Text>
     </Flex>
   );
